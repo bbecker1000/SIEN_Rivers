@@ -1,1 +1,37 @@
-Week	Monday date	Overview	1	2/7/2022	Introduction	Weekly Milestones: "Kickoff meeting, read background material"2	2/14/2022	github/individual orientation to project and data/start EDA	Weekly Milestones: i)EDA w/ datamaid and any other EDA products; ii) github set-up; iii)individual project3	2/21/2022	EDA on hydro data sets/start with code	Weekly Milestones:-set-up github project - Ben will set up project. Brandon and Noor will take it from there. -Create project tracking Readme file -  andi -Query current datasets and upload to github - andi (note -looking like i will get them uploaded tomorrow morning)-Test Matlab/R conversion package - Brandon -EDA w/ current datasets - Noor4	2/28/2022	convert and test codeWeekly Milestones: 	5	3/7/2022	convert and test code 	6	3/14/2022	put into one document with simple workflow	Create Markdown doc w/ workflow7	3/21/2022	qaqc	8	3/28/2022	improve on workflow and initial test with data sets	9	4/4/2022	improve on code and workflow/qaqc	10	4/11/2022	additional coding for any missing metrics or additoinal features we want to add	11	4/18/2022	Complete draft markdown report	12	4/25/2022	Prepare presentation & revise report	13	5/2/2022	Submit final report and give presentation to NPS. Prepare Discovery Program showcase (blog or presentation)											May 6  showcase date		
+Week	Monday date	Overview	
+1	2/7/2022	Introduction	
+Weekly Milestones: "Kickoff meeting, read background material"
+
+2	2/14/2022	github/individual orientation to project and data/start EDA	
+Weekly Milestones: 
+i)EDA w/ datamaid and any other EDA products; 
+ii) github set-up; 
+iii)individual project
+
+3	2/21/2022	EDA on hydro data sets/start with code	
+Weekly Milestones:
+-set-up github project - Ben will set up project. Brandon and Noor will take it from there. 
+-Create project tracking Readme file -  andi 
+-Query current datasets and upload to github - andi (note -looking like i will get them uploaded tomorrow morning)
+-Test Matlab/R conversion package - Brandon 
+-EDA w/ current datasets - Noor
+
+4	2/28/2022	convert and test code
+Weekly Milestones:
+-Determine best way to convert - test conversion package more and determine if best approach or just rewrite 
+-Data import figured out for both Ned's test file and the two current datasets 
+-have two of the .m files done at minimum -- up and running. 
+ 	
+5	3/7/2022	convert and test code 	
+6	3/14/2022	put into one document with simple workflow	Create Markdown doc w/ workflow
+7	3/21/2022	qaqc	
+8	3/28/2022	improve on workflow and initial test with data sets	
+9	4/4/2022	improve on code and workflow/qaqc	
+10	4/11/2022	additional coding for any missing metrics or additoinal features we want to add	
+11	4/18/2022	Complete draft markdown report	
+12	4/25/2022	Prepare presentation & revise report	
+13	5/2/2022	Submit final report and give presentation to NPS. Prepare Discovery Program showcase (blog or presentation)	
+			
+			
+			
+	May 6  showcase date		
