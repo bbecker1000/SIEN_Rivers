@@ -1,0 +1,9 @@
+```{r}
+install.packages('matconv')
+```
+
+```{r}
+library('matconv')
+
+mat2r('./MATLAB/NedsFiles_sien_hydrolgy/sien_hydro_programs/surfwtr.m', pathOutR = './Rcode/surfwtr.r')
+```
