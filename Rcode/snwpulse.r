@@ -13,30 +13,23 @@ smq = numeric(recdyr)
 swpulse = numeric(recdyr)
 cmd = numeric(recdyr)
 dypulse = numeric(recdyr)
-# for (n in 1:recdyr){
-#     sumq(n) <- 0.0
-#     smq(n) <- 0.0
-#     swpulse(n) <- 0.0
-#     cmd(n) <- 0.0
-#     dypulse(n) <- 0.0
-# }
 mindys <- 1
 maxdys <- 365
 tma <- mindys + 100
 tmb <- mindys + 339
 #Calculate discharge for period from day 100 to day 339 in water year
-for (n in 1:recdyr){
-    for (m in tma:tmb){
+for (n in 1:recdyr) {
+    for (m in tma:tmb) {
         sumq[n] <- sumq[n] + dmq[m]
         if ((mth[m] == 2) && (day[m] == 29)) {
             maxdys <- maxdys + 1
         }
     }
     wyr[n] <- yr[maxdys]
-    mdq[n] <- sumq[n]/240
-    for (m in tma:tmb){
+    mdq[n] <- sumq[n] / 240
+    for (m in tma:tmb) {
         cmd[n] <- cmd[n] + (dmq[m] - mdq[n])
-        if (cmd[n] < swpulse[n]){
+        if (cmd[n] < swpulse[n]) {
             swpulse[n] <- cmd[n]
             dypulse[n]  <- (m - tma) + 8
         }
@@ -46,13 +39,12 @@ for (n in 1:recdyr){
     tma <- mindys + 100
     tmb <- mindys + 339
 }
-    n <- 1
-    #fid1 <- fopen('MRHqsnoset','w')
-    while (n <= recdyr){
-    cat(sprintf('%5.0f    %6.2f    %6.2f       %5.0f\n'
-        ,wyr[n],mdq[n],swpulse[n],dypulse[n]), file='./Output/MRHqsnoset', append=TRUE)
+n <- 1
+while (n <= recdyr) {
+    cat(
+        sprintf('%5.0f    %6.2f    %6.2f       %5.0f\n', wyr[n], mdq[n], swpulse[n], dypulse[n]),
+        file = './Output/MRHqsnoset',
+        append = TRUE
+    )
     n <- n + 1
 }
-#fclose(fid1)
-
-
