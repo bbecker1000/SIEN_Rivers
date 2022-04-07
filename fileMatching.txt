@@ -1,0 +1,8 @@
+lwflow.r -> mrhlwf1D, mrhMAQ, mrhlwf2D, mrhlwf3DX
+snwpulse.r -> MRHqsnoset
+surfwtr.r -> MRHq_snmlt
+
+Files not on Github yet:
+
+hiflow.r -> mrhhif1, mrhhif2, mrhhif3X
+fldur.r -> MRHq_fld
