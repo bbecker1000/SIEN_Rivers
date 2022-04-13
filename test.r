@@ -1,6 +1,6 @@
 library('dplyr')
 
-RFILES <- c('lwflow', 'snwpulse', 'surfwtr')
+RFILES <- c('lwflow', 'snwpulse', 'surfwtr', 'fldur')
 
 for (file in RFILES) {
   source(paste('./Rcode/', file, '.r', sep = ''))
@@ -14,5 +14,5 @@ for (file in outputFiles) {
   print(file)
   matlabOutput <- read.table(paste(matLabOutputPath, file, sep = ''))
   rOutput <- read.table(paste('./Output/', file, sep = ''))
-  print(all.equal(matlabOutput, rOutput, ignore_col_order = False, ignore_row_order = False))
+  print(all.equal(matlabOutput, rOutput, ignore_col_order = FALSE, ignore_row_order = FALSE))
 }
