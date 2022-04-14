@@ -1,6 +1,6 @@
 library('dplyr')
 
-RFILES <- c('lwflow', 'snwpulse', 'surfwtr', 'fldur')
+RFILES <- c('lwflow', 'snwpulse', 'surfwtr', 'fldur', 'hiflow')
 
 for (file in RFILES) {
   source(paste('./Rcode/', file, '.r', sep = ''))

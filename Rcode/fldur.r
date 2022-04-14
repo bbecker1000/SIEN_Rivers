@@ -16,7 +16,7 @@ output <- data.frame(pbs = pbsVals) %>%
   rowwise() %>%
   mutate(n = sum(pbs > prbq) + 1) %>%
   mutate(qfd = qsrt[n] + (qsrt[n - 1] - qsrt[n]) * ((pbs - prbq[n]) / (prbq[n - 1] - prbq[n]))) %>%
-  mutate(dqfd = qfd / mean(dmq)) %>%
+  mutate(dqfd = qfd / mean(qsrt)) %>%
   select(-n)
 
 writeOutput(output, '   %5.2f    %8.2f   %8.3f\n', 'MRHq_fld')
