@@ -1,4 +1,4 @@
-readData <- function() read_tsv('./Rcode/MRHq.txt', col_names = c('mth', 'day', 'yr', 'dmq'))
+readData <- function(inputFile) read_tsv(inputFile, col_names = c('mth', 'day', 'yr', 'dmq'), col_types = c('i', 'i', 'i', 'd'))
 
 groupByWaterYear <- function(df) {
   df %>%
@@ -41,12 +41,12 @@ genOutput3X <- function(df, reverse = FALSE) {
   output3X %>% select(-n, -Px) %>% ungroup() %>% slice(-1)
 }
 
-writeOutput <- function(df, fmt, file) {
+writeOutput <- function(df, fmt, file, dir) {
   # Transform each row of the dataframe to formatted string output
   output <- do.call(sprintf, append(fmt, as.list(df)))
   
   # Delete the previous output file if exists
-  filePath <- paste('./Output/', file, sep = '')
+  filePath <- str_glue('{dir}{file}')
   if (file.exists(filePath)) {
     file.remove(filePath)
   }
