@@ -2,14 +2,7 @@ library(tidyverse)
 
 source('./Rcode/utils.R')
 
-data <- readData('./Rcode/MRHq.txt')
-
-RFILES <- c('lwflow', 'snwpulse', 'surfwtr', 'fldur', 'hiflow')
-
-for (file in RFILES) {
-  source(str_glue('./Rcode/{file}.R'))
-  do.call(file, list(data, './Test_Output/'))
-}
+compose('./Rcode/MRHq.txt', './Test_Output/')
 
 matLabOutputPath <- './MATLAB_Output/'
 outputFiles <- list.files(matLabOutputPath)

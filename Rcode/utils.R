@@ -54,3 +54,14 @@ writeOutput <- function(df, fmt, file, dir) {
   # Print each row of output to the output file
   lapply(output, cat, file = filePath, append = TRUE)
 }
+
+
+
+compose <- function(inputFile, outputDir) {
+  data <- readData(inputFile)
+  
+  for (file in c('lwflow', 'snwpulse', 'surfwtr', 'fldur', 'hiflow')) {
+    source(str_glue('./Rcode/{file}.R'))
+    do.call(file, list(data, outputDir))
+  }
+}
