@@ -2,7 +2,7 @@ library(tidyverse)
 
 source('./Rcode/utils.R')
 
-inputFile <- './Rcode/MRHq.txt'
+inputFile <- './Data_Raw/MercedHI_Q_T_2022023.txt'
 outputDir <- './Output/'
 
-compose(inputFile, outputDir)
+compose(inputFile, outputDir, usgs = TRUE)

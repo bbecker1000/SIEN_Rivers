@@ -1,4 +1,16 @@
-readData <- function(inputFile) read_tsv(inputFile, col_names = c('mth', 'day', 'yr', 'dmq'), col_types = c('i', 'i', 'i', 'd'))
+library(lubridate)
+
+readData <- function(inputFile, usgs) {
+  if (usgs) {
+    df <- read_tsv(inputFile, col_names = FALSE, skip = 36, col_select = c(3, 12)) %>%
+      mutate(date = ymd(X3)) %>%
+      transmute(mth = month(date), day = day(date), yr = year(date), dmq = X12)
+    
+    return(df)
+  }
+  
+  read_tsv(inputFile, col_names = c('mth', 'day', 'yr', 'dmq'), col_types = c('i', 'i', 'i', 'd'))
+}
 
 groupByWaterYear <- function(df) {
   df %>%
@@ -55,9 +67,9 @@ writeOutput <- function(df, fmt, file, dir) {
   lapply(output, cat, file = filePath, append = TRUE)
 }
 
-compose <- function(inputFile, outputDir) {
-  data <- readData(inputFile)
-  
+compose <- function(inputFile, outputDir, usgs = FALSE) {
+  data <- readData(inputFile, usgs)
+  print(data)
   for (file in c('lwflow', 'snwpulse', 'surfwtr', 'fldur', 'hiflow')) {
     source(str_glue('./Rcode/{file}.R'))
     do.call(file, list(data, outputDir))

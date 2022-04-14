@@ -16,9 +16,10 @@ source('./Rcode/utils.R')
 ### Read Data
 To run the programs on your desired file, set `inputFile` to the appropriate file path
 ```{r}
-inputFile <- NULL
+inputFile <- NULL # Set to appropriate file
+usgs <- FALSE # Set to true if the input is in USGS format
 defaultFile <- './Rcode/MRHq.txt'
-data <- readData(if (is.null(inputFile)) defaultFile else inputFile)
+data <- readData(if (is.null(inputFile)) defaultFile else inputFile, usgs = usgs)
 ```
 
 ### Generate and Analyze Output
