@@ -17,4 +17,6 @@ fldur <- function(data, outputDir = './Output/') {
     select(-n)
   
   writeOutput(output, '   %5.2f    %8.2f   %8.3f\n', 'MRHq_fld', outputDir)
+  
+  output
 }

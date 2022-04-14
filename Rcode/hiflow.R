@@ -17,5 +17,8 @@ hiflow <- function(data, outputDir = './Output/') {
   
   writeOutput(output2, ' %8.4f  %8.2f  %8.2f  %8.2f  %8.2f\n', 'mrhhif2', outputDir)
   
-  writeOutput(output2 %>% genOutput3X(TRUE), ' %7.3f  %8.2f   %8.2f  %8.2f  %8.2f\n', 'mrhhif3X', outputDir)
+  output3X <- output2 %>% genOutput3X(TRUE)
+  writeOutput(output3X, ' %7.3f  %8.2f   %8.2f  %8.2f  %8.2f\n', 'mrhhif3X', outputDir)
+  
+  list(output1, output2, output3X)
 }

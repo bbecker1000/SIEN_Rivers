@@ -1,0 +1,86 @@
+# Hydrology Analysis
+
+### Installation
+Only necessary to run this cell once to set up local machine
+```{r}
+install.packages('tidyverse')
+```
+
+### Set up Environment
+Loads the [Tidyverse](https://www.tidyverse.org/) and imports necessary functions
+```{r}
+library(tidyverse)
+source('./Rcode/utils.R')
+```
+
+### Read Data
+To run the programs on your desired file, set `inputFile` to the appropriate file path
+```{r}
+inputFile <- NULL
+defaultFile <- './Rcode/MRHq.txt'
+data <- readData(if (is.null(inputFile)) defaultFile else inputFile)
+```
+
+### Generate and Analyze Output
+There are two cells each R program: the first will generate output and store it in the `./Output/` folder,
+and the second gives space to produce visualizations of the output
+
+#### surfwtr.R
+Generate output
+```{r}
+source('./Rcode/surfwtr.R')
+surfwtrOutput <- surfwtr(data)
+head(surfwtrOutput)
+```
+
+```{r}
+# Space to visualize surfwtrOutput
+```
+
+#### snwpulse.R
+Generate output
+```{r}
+source('./Rcode/snwpulse.R')
+snwpulseOutput <- snwpulse(data)
+head(snwpulseOutput)
+```
+
+```{r}
+# Space to visualize snwpulseOutput
+```
+
+#### lwflow.R
+Generate output
+```{r}
+source('./Rcode/lwflow.R')
+lwflowOutputs <- lwflow(data) # Returns list of tables
+lapply(lwflowOutputs, head)
+```
+
+```{r}
+# Space to visualize lwflowOutputs
+```
+
+#### hiflow.R
+Generate output
+```{r}
+source('./Rcode/hiflow.R')
+hiflowOutputs <- hiflow(data) # Returns list of tables
+lapply(hiflowOutputs, head)
+```
+
+```{r}
+# Space to visualize hiflowOutputs
+```
+
+#### fldur.R
+Generate output
+```{r}
+source('./Rcode/fldur.R')
+fldurOutput <- fldur(data)
+head(fldurOutput)
+```
+
+```{r}
+# Space to visualize fldurOutput
+```

@@ -30,6 +30,8 @@ lwflow <- function(data, outputDir = './Output/') {
     
     writeOutput(output2D, '%7.3f  %7.3f  %7.3f  %7.3f  %7.3f  %7.3f   %7.3f\n', 'mrhlwf2D', outputDir)
     
-    writeOutput(output2D %>% genOutput3X(), '%7.3f  %7.3f   %7.3f  %7.3f  %7.3f  %7.3f  %7.3f\n', 'mrhlwf3DX', outputDir)
+    output3DX <- output2D %>% genOutput3X()
+    writeOutput(output3DX, '%7.3f  %7.3f   %7.3f  %7.3f  %7.3f  %7.3f  %7.3f\n', 'mrhlwf3DX', outputDir)
     
+    list(outputMAQ, output1D, output2D, output3DX)
 }

@@ -55,8 +55,6 @@ writeOutput <- function(df, fmt, file, dir) {
   lapply(output, cat, file = filePath, append = TRUE)
 }
 
-
-
 compose <- function(inputFile, outputDir) {
   data <- readData(inputFile)
   

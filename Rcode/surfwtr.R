@@ -10,4 +10,6 @@ surfwtr <- function(data, outputDir = './Output/') {
         summarize(dur = n(), mdq = mean(dmq), cmt = sum(qt) / sum(dmq), frsmq = sum(smq) / sum(dmq)) # Produce output columns
     
     writeOutput(output, '%5.0f    %6.2f    %6.2f       %6.2f       %6.5f\n', 'MRHq_snmlt', outputDir)
+    
+    output
 }

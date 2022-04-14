@@ -9,4 +9,6 @@ snwpulse <- function(data, outputDir = './Output/') {
       summarize(mdq = mean(dmq), snwpulse = min(cmd), dypulse = which.min(cmd) + 7) # Produce output columns
   
   writeOutput(output, '%5.0f    %6.2f    %6.2f       %5.0f\n', 'MRHqsnoset', outputDir)
+  
+  output
 }
