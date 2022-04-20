@@ -1,9 +1,14 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Hydrology Analysis
 
 ### Installation
 Only necessary to run this cell once to set up local machine
 ```{r}
-install.packages('tidyverse')
+install.packages('tidyverse', repos='http://cran.us.r-project.org')
 ```
 
 ### Set up Environment
@@ -16,10 +21,8 @@ source('./Rcode/utils.R')
 ### Read Data
 To run the programs on your desired file, set `inputFile` to the appropriate file path
 ```{r}
-inputFile <- NULL # Set to appropriate file
-usgs <- FALSE # Set to true if the input is in USGS format
-defaultFile <- './Rcode/MRHq.txt'
-data <- readData(if (is.null(inputFile)) defaultFile else inputFile, usgs = usgs)
+inputFile <- './Data_Raw/MercedHI_Q_T_2022023.txt' # Set to appropriate file
+data <- readUsgsData(inputFile)
 ```
 
 ### Generate and Analyze Output
