@@ -1,18 +1,20 @@
-# Remove header information and relabel column names of MFSanJoaquin_Q_20220223.txt
-
-df <- read.delim("/Users/noor/Desktop/NPS/SIEN_Rivers_RStudio/Data_Raw/MFSanJoaquin_Q_20220223.txt")
-
-df <- df[-c(1:29),]
-colnames(df) <- c('Agency CD','Site Number', 'Datetime', 'Discharge, cubic feet per second (Mean)', 'Discharge, cubic feet per second (Mean) CD')
-
-head(df)
+# Remove header info, relabel column names, and extract Year, Month, Day columns if datetime column found
+library(dplyr)
 
 
+removeHeaderFromData <- function(df) {
+  cleaned_df <- df
+  cleaned_df <- cleaned_df[!grepl('#', cleaned_df[,1]),] #remove '#' from rows in first col
+  cleaned_df <- cleaned_df[-c(1,2),] #remove extra 2 rows with no '#'
+  return(cleaned_df)
+}
+
+groupByWaterYear <- function(df) {
+  df %>%
+    mutate(waterYear = ifelse(Month >= 10, Year + 1, Year)) %>% # Assign each row to a water year (10/1-9/30)
+    group_by(waterYear) # Separate the data by water year
+}
 
 
 
-
-
-
-#colnames(df2) <- c('Agency CD','Site Number', 'Datetime', 'Temperature, water, degrees Celsius (Mean)', 'Temperature, water, degrees Celsius (Mean) CD', 'Temperature, water, degrees Celsius (Maximum)', 'Temperature, water, degrees Celsius (Maximum) CD', 'Temperature, water, degrees Celsius (Minimum)', 'Temperature, water, degrees Celsius (Minimum) CD', 'Temperature, water, degrees Celsius (Median)', 'Temperature, water, degrees Celsius (Median) CD', 'Discharge, cubic feet per second (Mean)', 'Discharge, cubic feet per second (Mean) CD')
 
