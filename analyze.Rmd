@@ -22,7 +22,7 @@ source('./Rcode/utils.R')
 To run the programs on your desired file, set `inputFile` to the appropriate file path
 ```{r}
 inputFile <- './Data_Raw/MercedHI_Q_T_2022023.txt' # Set to appropriate file
-data <- readUsgsData(inputFile)
+data <- readUsgsData(inputFile, startDate = ymd('1915-10-01'))
 ```
 
 ### Generate and Analyze Output
