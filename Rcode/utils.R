@@ -71,6 +71,23 @@ writeOutput <- function(df, fmt, file, dir) {
   lapply(output, cat, file = filePath, append = TRUE)
 }
 
+summarizeOutput <- function(df) {
+  summarizeMetric <- function(fun) {
+    df %>% summarize(across(everything(), fun)) %>% unlist()
+  }
+  
+  tibble(
+    rownames = colnames(df),
+    mean = summarizeMetric(mean),
+    stdDev = summarizeMetric(sd),
+    min = summarizeMetric(min),
+    median = summarizeMetric(median),
+    max = summarizeMetric(max)
+  ) %>% column_to_rownames(var = 'rownames') %>% print()
+  
+  print(head(df))
+}
+
 compose <- function(inputFile, outputDir, mrhq = FALSE, startDate = NULL, endDate = NULL) {
   data <- if (mrhq) readMHRqData(inputFile) else readUsgsData(inputFile, startDate, endDate)
   

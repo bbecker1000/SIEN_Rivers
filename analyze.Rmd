@@ -13,7 +13,7 @@ install.packages('tidyverse', repos='http://cran.us.r-project.org')
 
 ### Set up Environment
 Loads the [Tidyverse](https://www.tidyverse.org/) and imports necessary functions
-```{r}
+```{r, warning = FALSE}
 library(tidyverse)
 source('./Rcode/utils.R')
 ```
@@ -34,7 +34,7 @@ Generate output
 ```{r}
 source('./Rcode/surfwtr.R')
 surfwtrOutput <- surfwtr(data)
-head(surfwtrOutput)
+summarizeOutput(surfwtrOutput)
 ```
 
 ```{r}
@@ -46,7 +46,7 @@ Generate output
 ```{r}
 source('./Rcode/snwpulse.R')
 snwpulseOutput <- snwpulse(data)
-head(snwpulseOutput)
+summarizeOutput(snwpulseOutput)
 ```
 
 ```{r}
@@ -58,7 +58,7 @@ Generate output
 ```{r}
 source('./Rcode/lwflow.R')
 lwflowOutputs <- lwflow(data) # Returns list of tables
-lapply(lwflowOutputs, head)
+invisible(lapply(lwflowOutputs, summarizeOutput))
 ```
 
 ```{r}
@@ -70,7 +70,7 @@ Generate output
 ```{r}
 source('./Rcode/hiflow.R')
 hiflowOutputs <- hiflow(data) # Returns list of tables
-lapply(hiflowOutputs, head)
+invisible(lapply(hiflowOutputs, summarizeOutput))
 ```
 
 ```{r}
@@ -81,8 +81,8 @@ lapply(hiflowOutputs, head)
 Generate output
 ```{r}
 source('./Rcode/fldur.R')
-fldurOutput <- fldur(data)
-head(fldurOutput)
+fldurOutput <- fldur(data) %>% ungroup()
+summarizeOutput(fldurOutput)
 ```
 
 ```{r}
