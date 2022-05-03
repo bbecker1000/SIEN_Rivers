@@ -25,6 +25,34 @@ inputFile <- './Data_Raw/MercedHI_Q_T_2022023.txt' # Set to appropriate file
 data <- readUsgsData(inputFile, startDate = ymd('1915-10-01'))
 ```
 
+### Visualize Input Data
+```{r}
+ggplot(data, aes(x=date, y=dmq, group=1)) +
+  geom_line() + 
+  theme_classic() +
+  ggtitle("Mean Daily Discharge") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Time") +
+  ylab("Discharge, cubic feet per second (Mean)")
+
+ggplot(data %>% filter(ifelse(mth >= 10, yr + 1, yr) == 2021), aes(x=date, y=dmq, group=1)) +
+  geom_line() +
+  ylim(NA, 375) + 
+  theme_classic() +
+  ggtitle("Mean Daily Discharge (WY2021)") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Time") +
+  ylab("Discharge, cubic feet per second (Mean)")
+
+ggplot(data %>% groupByWaterYear(), aes(x=as.character(waterYear), y=dmq)) + 
+  geom_boxplot() + 
+  theme_classic() +
+  ggtitle("Mean Annual Discharge Boxplot") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Water Year") +
+  ylab("Discharge, cubic feet per year (Mean)")
+```
+
 ### Generate and Analyze Output
 There are two cells each R program: the first will generate output and store it in the `./Output/` folder,
 and the second gives space to produce visualizations of the output
@@ -39,6 +67,13 @@ summarizeOutput(surfwtrOutput)
 
 ```{r}
 # Space to visualize surfwtrOutput
+ggplot(surfwtrOutput, aes(x=waterYear, y=cmt)) +
+  geom_line() + 
+  theme_classic() +
+  ggtitle("Center Timing Time Series") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Water Year") +
+  ylab("Time to Runoff Center of Mass (days)")
 ```
 
 #### snwpulse.R
@@ -51,6 +86,13 @@ summarizeOutput(snwpulseOutput)
 
 ```{r}
 # Space to visualize snwpulseOutput
+ggplot(snwpulseOutput, aes(x=waterYear, y=dypulse)) +
+  geom_line() + 
+  theme_classic() +
+  ggtitle("Days to Snowmelt Onset Time Series") + 
+  theme(plot.title = element_text(hjust = 0.5)) +
+  xlab("Water Year") +
+  ylab("Time to Snowmelt Onset (days)")
 ```
 
 #### lwflow.R

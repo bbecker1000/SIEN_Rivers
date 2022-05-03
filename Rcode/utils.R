@@ -11,7 +11,7 @@ readUsgsData <- function(inputFile, startDate = NULL, endDate = NULL) {
     df <- df %>% filter(date <= endDate)
   }
   
-  df %>% transmute(mth = month(date), day = day(date), yr = year(date), dmq = X12)
+  df %>% mutate(mth = month(date), day = day(date), yr = year(date), dmq = X12)
 }
 
 readMHRqData <- function(inputFile) read_tsv(inputFile, col_names = c('mth', 'day', 'yr', 'dmq'))
