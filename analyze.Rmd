@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Hydrology Analysis
 
@@ -41,14 +41,14 @@ ggplot(data, aes(x=date, y=dmq, group=1)) +
 
 ggplot(data %>% filter(ifelse(mth >= 10, yr + 1, yr) == 2021), aes(x=date, y=dmq, group=1)) +
   geom_line() +
-  ylim(NA, 375) + 
+  ylim(NA, 1500) + 
   theme_classic() +
   ggtitle("Mean Daily Discharge (WY2021)") + 
   theme(plot.title = element_text(hjust = 0.5)) +
   xlab("Time") +
   ylab("Discharge, cubic feet per second (Mean)")
 
-ggplot(data %>% groupByWaterYear(), aes(x=as.character(waterYear), y=dmq)) + 
+ggplot(data %>% groupByWaterYear() %>% filter(waterYear > 2010), aes(x=as.character(waterYear), y=dmq)) + 
   geom_boxplot() + 
   theme_classic() +
   ggtitle("Mean Annual Discharge Boxplot") + 
@@ -67,6 +67,7 @@ Generate output
 source('./Rcode/surfwtr.R')
 surfwtrOutput <- surfwtr(data)
 summarizeOutput(surfwtrOutput)
+displayHead(surfwtrOutput)
 ```
 
 ```{r}
@@ -86,6 +87,7 @@ Generate output
 source('./Rcode/snwpulse.R')
 snwpulseOutput <- snwpulse(data)
 summarizeOutput(snwpulseOutput)
+displayHead(snwpulseOutput)
 ```
 
 ```{r}
@@ -104,7 +106,14 @@ Generate output
 ```{r}
 source('./Rcode/lwflow.R')
 lwflowOutputs <- lwflow(data) # Returns list of tables
-invisible(lapply(lwflowOutputs, summarizeOutput))
+summarizeOutput(lwflowOutputs[[1]])
+displayHead(lwflowOutputs[[1]])
+summarizeOutput(lwflowOutputs[[2]])
+displayHead(lwflowOutputs[[2]])
+summarizeOutput(lwflowOutputs[[3]])
+displayHead(lwflowOutputs[[3]])
+summarizeOutput(lwflowOutputs[[4]])
+displayHead(lwflowOutputs[[4]])
 ```
 
 ```{r}
@@ -116,7 +125,12 @@ Generate output
 ```{r}
 source('./Rcode/hiflow.R')
 hiflowOutputs <- hiflow(data) # Returns list of tables
-invisible(lapply(hiflowOutputs, summarizeOutput))
+summarizeOutput(hiflowOutputs[[1]])
+displayHead(hiflowOutputs[[1]])
+summarizeOutput(hiflowOutputs[[2]])
+displayHead(hiflowOutputs[[2]])
+summarizeOutput(hiflowOutputs[[3]])
+displayHead(hiflowOutputs[[3]])
 ```
 
 ```{r}
@@ -129,6 +143,7 @@ Generate output
 source('./Rcode/fldur.R')
 fldurOutput <- fldur(data) %>% ungroup()
 summarizeOutput(fldurOutput)
+displayHead(fldurOutput)
 ```
 
 ```{r}

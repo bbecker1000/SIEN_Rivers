@@ -83,9 +83,11 @@ summarizeOutput <- function(df) {
     min = summarizeMetric(min),
     median = summarizeMetric(median),
     max = summarizeMetric(max)
-  ) %>% column_to_rownames(var = 'rownames') %>% print()
-  
-  print(head(df))
+  ) %>% column_to_rownames(var = 'rownames') %>% knitr::kable()
+}
+
+displayHead <- function(df) {
+  df %>% head() %>% knitr::kable()
 }
 
 compose <- function(inputFile, outputDir, mrhq = FALSE, startDate = NULL, endDate = NULL) {
