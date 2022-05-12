@@ -115,15 +115,15 @@ ggplot(MRHqsnoset_df, aes(x=year, y=maybe_time_to_onset_melt_days)) +
 
 merced_df <- read.table("./Data_Raw/MercedHI_Q_T_2022023.txt", sep = "\t")
 
-colnames(merced_df) <- c('Agency_CD','Site_Number', 'Datetime', 'Temperature_water_degrees_Celsius_Mean', 'Temperature_water_degrees_Celsius_Mean_CD', 'Temperature_water_degrees_Celsius_Maximum', 'Temperature_water_degrees_Celsius_Maximum_CD', 'Temperature_water_degrees_Celsius_Minimum', 'Temperature_water_degrees_Celsius_Minimum_CD', 'Temperature_water_degrees_Celsius_Median', 'Temperature_water_degrees_Celsius_Median_CD', 'Discharge_cubic_feet_per_second_Mean', 'Discharge_cubic_feet_per_second_Mean_CD')
+colnames(merced_df) <- c('Agency_CD','Site_Number', 'Datetime', 'Temperature_water_degrees_Celsius_Mean', 'Temperature_water_degrees_Celsius_Mean_CD', 'Temp_Max', 'Temperature_water_degrees_Celsius_Maximum_CD', 'Temp_Min', 'Temperature_water_degrees_Celsius_Minimum_CD', 'Temperature_water_degrees_Celsius_Median', 'Temperature_water_degrees_Celsius_Median_CD', 'Discharge_cubic_feet_per_second_Mean', 'Discharge_cubic_feet_per_second_Mean_CD')
 
 #change column data types
 cleaned_merced_df <- removeHeaderFromData(merced_df)
 cleaned_merced_df$Datetime <- as.Date(cleaned_merced_df$Datetime, "%Y-%m-%d")
 cleaned_merced_df$Site_Number <- as.numeric(cleaned_merced_df$Site_Number)
 cleaned_merced_df$Temperature_water_degrees_Celsius_Mean <- as.numeric(cleaned_merced_df$Temperature_water_degrees_Celsius_Mean)
-cleaned_merced_df$Temperature_water_degrees_Celsius_Maximum <- as.numeric(cleaned_merced_df$Temperature_water_degrees_Celsius_Maximum)
-cleaned_merced_df$Temperature_water_degrees_Celsius_Minimum <- as.numeric(cleaned_merced_df$Temperature_water_degrees_Celsius_Minimum)
+cleaned_merced_df$Temp_Max <- as.numeric(cleaned_merced_df$Temp_Max)
+cleaned_merced_df$Temp_Min <- as.numeric(cleaned_merced_df$Temp_Min)
 cleaned_merced_df$Temperature_water_degrees_Celsius_Median <- as.numeric(cleaned_merced_df$Temperature_water_degrees_Celsius_Median)
 cleaned_merced_df$Discharge_cubic_feet_per_second_Mean <- as.numeric(cleaned_merced_df$Discharge_cubic_feet_per_second_Mean)
 
@@ -171,47 +171,64 @@ ggplot(grouped_merced_boxplot_df, aes(x=as.character(waterYear), y=Temperature_w
 
 #Daily minimum and maximum water temperature time series - complt period of record
 ggplot(cleaned_merced_df, aes(x=Datetime)) +
-  geom_line(aes(y=Temperature_water_degrees_Celsius_Minimum),color='blue')+
-  geom_line(aes(y=Temperature_water_degrees_Celsius_Maximum),color='orange')+
+  geom_line(aes(y=Temp_Min,color='Temp_Min'))+
+  geom_line(aes(y=Temp_Max,color='Temp_Max'))+
   xlim(as.Date("1962-01-01"), NA) +
   theme_classic() +
-  ggtitle("Daily Minimum & Maximum Water Temperature Time Series") + 
+  ggtitle("Daily Minimum & Maximum Water Temperature") + 
   theme(plot.title = element_text(hjust = 0.5)) +
   xlab("Time") +
-  ylab("Temperature (degrees C)")
+  ylab("Temperature (degrees C)") +
+  scale_colour_manual("", 
+                      breaks = c("Temp_Max", "Temp_Min"),
+                      values = c("orange",  "blue"))
   
 #Daily minimum and maximum water temperature time series - most recent water year
 recent_wtr_yr_df <- subset(grouped_merced_df, grouped_merced_df$waterYear == 2021)
 ggplot(recent_wtr_yr_df, aes(x=Datetime)) +
-  geom_line(aes(y=Temperature_water_degrees_Celsius_Minimum),color='blue')+
-  geom_line(aes(y=Temperature_water_degrees_Celsius_Maximum),color='orange')+
+  geom_line(aes(y=Temp_Min,color='Temp_Min'))+
+  geom_line(aes(y=Temp_Max,color='Temp_Max'))+
   theme_classic() +
-  ggtitle("Daily Minimum & Maximum Water Temperature (WY2021)") + 
+  ggtitle("Daily Minimum & Maximum Water Temperature (WY2021)") +
   theme(plot.title = element_text(hjust = 0.5)) +
   xlab("Time") +
-  ylab("Temperature (degrees C)")
+  ylab("Temperature (degrees C)") +
+  scale_colour_manual("", 
+                      breaks = c("Temp_Max", "Temp_Min"),
+                      values = c("orange",  "blue"))
 
 
 # annual min and max water temperature boxplots
 grouped_merced_boxplot_df <- subset(grouped_merced_df, grouped_merced_df$waterYear == c(2017,2018,2019,2020,2021))
 
+
+cols = c('blue', 'orange')
 ggplot(grouped_merced_boxplot_df, aes(x=as.character(waterYear))) +
-  geom_boxplot(aes(y=Temperature_water_degrees_Celsius_Minimum),color='blue',alpha=.8)+
-  geom_boxplot(aes(y=Temperature_water_degrees_Celsius_Maximum),color='orange',alpha=.8)+
+  geom_boxplot(aes(y=Temp_Min, colour = "Temp_Min"), alpha=.8)+
+  geom_boxplot(aes(y=Temp_Max, colour = "Temp_Max"),alpha=.8)+
   theme_classic() +
-  ggtitle("Annual Minimum and Maximum Water Temperature Boxplot") + 
-  theme(plot.title = element_text(hjust = 0.5)) +
+  ggtitle("Annual Minimum & Maximum Water Temperature") + 
+theme(plot.title = element_text(hjust = 0.5)) +
   xlab("Water Year") +
-  ylab("Temperature (degrees C")
+  ylab("Temperature (degrees C)") +
+  scale_colour_manual("", 
+                      breaks = c("Temp_Max", "Temp_Min"),
+                      values = c("orange",  "blue"))
 
 
-# Flow duration curve (from fldur.R)
+# Flow duration curve (from fldur.R) 
 MRHq_fld_df <- read.table("./Output/MRHq_fld.txt")
-colnames(MRHq_fld_df) <- c('V1', 'V2','V3')
-ggplot(MRHq_fld_df, aes(x=V1, y=V2)) +
+colnames(MRHq_fld_df) <- c('pbs', 'qfd','dqfd')
+ggplot(MRHq_fld_df, aes(x=qfd, y=pbs)) +
   geom_line() + 
   theme_classic() +
   ggtitle("Flow Duration Curve") + 
   theme(plot.title = element_text(hjust = 0.5)) +
-  xlab("V1") +
-  ylab("V2")
+  xlab("qfd") +
+  ylab("pbs")
+
+
+
+#hi3df - high 3 day flow. wyr - water year. 
+# see Output_Headings.txt file for header info
+
