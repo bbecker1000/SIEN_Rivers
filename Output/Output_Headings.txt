@@ -1,0 +1,22 @@
+Matlab output headings - Andi Heard
+
+Output file: MRHq_snmlt
+Headings in order: Water Year, n, Mean annual flow (cfs), Time to center of mass (no. days), Cum Q equal to 0.98 annual runoff (% days)
+
+Output file: MRHqsnoset
+Headings in order: Water Year, 
+
+Output file: mrhhif1
+Headings in order: water year, high 3-day flow - discharge (cfs), high 7-day flow - discharge (cfs), high 10-day flow - discharge (cfs)d, high 14-day flow - discharge (cfs), Days to 7-day high flow, Days to 14-day high flow
+
+Output file: mrhhif2 (These are the data that are used for 'Fig. 18 a)' n Ned's report)
+Headings in order: Annual exceedence probability (percent), high 3-day flow - discharge (cfs), high 7-day flow - discharge (cfs), high 10-day flow - discharge (cfs)d, high 14-day flow - discharge (cfs), Days to 7-day high flow, Days to 14-day high flow
+
+Output file:mrhlwf1D
+Headings in order: water year, winter 3-day low flow - dischrage (cfs),winter 7-day low flow - dischrage (cfs),winter 14-day low flow - dischrage (cfs),summer 3-day low flow - dischrage (cfs),summer 7-day low flow - dischrage (cfs), summer 14-day low flow - dischrage (cfs),annual 7-day winter low flow (cfs),annual 7-day summer low flow (cfs)
+
+Output file:mrhlwf2D
+Headings in order:Annual exceedence probability (percent), low winter 3-day flow - discharge (cfs), low winter 7-day flow - discharge (cfs), low winter 14-day flow - discharge (cfs)d, low summer 3-day flow - discharge (cfs), low summer 7-day low flow, low summer 14-day low flow
+
+Output file:mrhMAQ
+Headings in order: water year, tbd

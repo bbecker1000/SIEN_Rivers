@@ -23,7 +23,34 @@ Weekly Milestones:
 -have two of the .m files done at minimum -- up and running. 
  	
 5	3/7/2022	convert and test code 	
+- Convert the remainder of the code - done
+- Test/compare against MatLab runs - in progress
+- Look for existing compare files package or creeate your own
+- Clean up the R code and document
+- Andi - check results to date against Ned's prior work
+- Andi - develop workflow 
+- Andi - change meeting time to 11:15
+
+
 6	3/14/2022	put into one document with simple workflow	Create Markdown doc w/ workflow
+- Cont. comparing Matlab and R code
+- clean, improve, and docuemnt R code
+- pull in and clean-up the two USGS datasets
+- Start graphing for following metrics: mean daily discharge, mean annual discharge, annual total discharge (rows 4-6 on RiverMetrics_Programs.xlsx)
+- Document input columns from USGS datasets - andi
+- Document output columns based on Ned's code - andi
+
+
+6	3/29/2022	
+- Cont. comparing Matlab and R code
+- clean, improve, and docuemnt R code
+- pull in and clean-up the two USGS datasets (done in excel to date - transfer workflow to R)
+- Complete graphs for following metrics: mean daily discharge, mean annual discharge, annual total discharge (rows 4-6 on RiverMetrics_Programs.xlsx)
+- Start the remainder of the graphs - get as far you can with remainder, include 3D plot
+- Document input columns from USGS datasets - andi
+- Document output columns based on Ned's code - andi
+
+
 7	3/21/2022	qaqc	
 8	3/28/2022	improve on workflow and initial test with data sets	
 9	4/4/2022	improve on code and workflow/qaqc	
@@ -32,6 +59,21 @@ Weekly Milestones:
 12	4/25/2022	Prepare presentation & revise report	
 13	5/2/2022	Submit final report and give presentation to NPS. Prepare Discovery Program showcase (blog or presentation)	
 			
+6	4/5/2022	
+- Cont. comparing Matlab and R code - only remaining is additional qa/qc on the leap year issue; otherwise done
+- clean, improve, and docuemnt R code - in progress
+- pull in and clean-up the two USGS datasets (done in excel to date - transfer workflow to R)
+- Complete graphs for following metrics:  mean annual discharge (boxplots), annual total discharge, plus rows 7 and 8
+- Send Andi crosswalk of Ned's code and output for headers
+- Document input columns from USGS datasets - andi
+- Document output columns based on Ned's code - andi
 			
+	
+	4/19/2022
+	- Presentation outline 
+	- Date for presentation - Noor and Brandon send Andi date ranges; Andi schedule with NPS
+	- Cross check updated USGS R code with Matlab code output (Brandon)
+	- Get .rmd file running (Brandon)
+	- Noor - graphs (Ben will help with 3D plot)
 			
 	May 6  showcase date		
